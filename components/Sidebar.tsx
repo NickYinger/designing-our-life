@@ -12,17 +12,21 @@ export default function Sidebar() {
   const pathname = usePathname()
   const { user, userName } = useUser()
   const [completed, setCompleted] = useState<Record<string, boolean>>({})
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     if (!user) return
     getExerciseCompletion(user).then(setCompleted)
   }, [user, pathname])
 
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
   const completedCount = Object.keys(completed).length
 
-  return (
-    <aside className="w-64 shrink-0 h-screen sticky top-0 flex flex-col bg-white border-r border-gray-100 overflow-y-auto">
-      {/* Header */}
+  const navContent = (
+    <>
       <div className="px-5 pt-6 pb-4 border-b border-gray-100">
         <Link href="/" className="block">
           <h1 className="text-base font-semibold text-gray-900 leading-tight">Designing Our Life</h1>
@@ -30,12 +34,10 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      {/* User picker */}
       <div className="px-4 py-3 border-b border-gray-100">
         <UserPicker />
       </div>
 
-      {/* Progress summary */}
       {user && (
         <div className="px-5 py-3 border-b border-gray-100">
           <div className="flex justify-between text-xs text-gray-500 mb-1.5">
@@ -51,7 +53,6 @@ export default function Sidebar() {
         </div>
       )}
 
-      {/* Nav */}
       <nav className="flex-1 px-3 py-3 space-y-0.5">
         <Link
           href="/"
@@ -102,6 +103,51 @@ export default function Sidebar() {
       <div className="px-5 py-3 border-t border-gray-100">
         <p className="text-xs text-gray-400 italic">Based on "Designing Your Life" by Burnett & Evans</p>
       </div>
-    </aside>
+    </>
+  )
+
+  return (
+    <>
+      {/* Mobile top bar */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
+        <Link href="/">
+          <h1 className="text-sm font-semibold text-gray-900">Designing Our Life</h1>
+          <p className="text-xs text-teal-600">Nick & Elise</p>
+        </Link>
+        <button
+          onClick={() => setMobileOpen(o => !o)}
+          className="p-2 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 z-30" onClick={() => setMobileOpen(false)}>
+          <div className="absolute inset-0 bg-black/20" />
+          <aside
+            className="absolute top-0 left-0 h-full w-72 bg-white flex flex-col overflow-y-auto shadow-xl"
+            onClick={e => e.stopPropagation()}
+          >
+            {navContent}
+          </aside>
+        </div>
+      )}
+
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex w-64 shrink-0 h-screen sticky top-0 flex-col bg-white border-r border-gray-100 overflow-y-auto">
+        {navContent}
+      </aside>
+    </>
   )
 }

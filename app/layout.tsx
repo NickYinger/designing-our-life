@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex min-h-screen">
             <Sidebar />
             <main className="flex-1 overflow-y-auto">
-              <div className="max-w-3xl mx-auto px-8 py-10">
+              <div className="max-w-3xl mx-auto px-4 md:px-8 pt-20 md:pt-10 pb-10">
                 {children}
               </div>
             </main>

@@ -6,6 +6,7 @@ import { saveResponse, getResponses, getPartnerResponses } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
 import PartnerView from '@/components/PartnerView'
 import Gauge from '@/components/Gauge'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 
 const EX_ID = 'ex1'
 const AREAS = ['Health', 'Work', 'Play', 'Love'] as const
@@ -64,7 +65,13 @@ export default function Ex1Page() {
         <p className="text-gray-500 text-sm">A snapshot of where you are now across four life areas.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 1: Start Where You Are"
+        time="30–45 minutes"
+        youNeed={['A quiet space', 'Honesty about where things actually stand — not where you wish they were']}
+        purpose="You can't design a life without knowing where you're starting from. This exercise is your current location across four domains. It's not a judgment — it's a reading. The goal is simply to see clearly so you have somewhere real to design from."
+      />
+      <ReadingSection id="ex1">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 1 — Start Where You Are</p>
         <p>You can't design a life without knowing where you're starting from. The authors use the GPS metaphor: before the app can give you directions, it needs your current location. That's what this exercise is — your current location across four domains of life.</p>
         <p className="mt-3">The four areas:</p>
@@ -89,14 +96,20 @@ export default function Ex1Page() {
             <h2 className="font-semibold text-gray-900 mb-1">{area}</h2>
             <p className="text-xs text-gray-400 mb-4">{AREA_DESC[area]}</p>
             <Gauge
-              label="How full does this feel?"
+              label="How full does this feel right now?"
               value={Number(form[`${area}_gauge`] ?? 50)}
               onChange={v => set(`${area}_gauge`, v)}
               minLabel="Empty"
               maxLabel="Full"
             />
             <div className="mt-4">
-              <label className="block text-xs text-gray-500 mb-2">Reflect on this area in a few sentences</label>
+              <label className="block text-xs text-gray-500 mb-1">Reflect on this area in a few sentences</label>
+              <p className="text-xs text-gray-400 mb-2">
+                {area === 'Health' && "Think about the last few weeks. How has your body felt? Your sleep? Your mental clarity and emotional steadiness? Any spiritual or grounding practice?"}
+                {area === 'Work' && "Consider everything you put real effort into — your job, side projects, caregiving, volunteering. Is it meaningful? Draining? Somewhere in between?"}
+                {area === 'Play' && "Play is anything you do purely for joy — no goal beyond the doing itself. If you have to justify it with productivity, it's probably not play. Do you have any?"}
+                {area === 'Love' && "Think about your closest relationships, your sense of belonging, and your connection to things you care about. How nourished does this area feel?"}
+              </p>
               <textarea
                 className="textarea"
                 rows={3}
@@ -111,13 +124,13 @@ export default function Ex1Page() {
         <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
           <div>
             <label className="block font-medium text-gray-900 text-sm mb-1">Is there a design problem you'd like to tackle?</label>
-            <p className="text-xs text-gray-400 mb-2">Looking across the four areas, is anything calling for attention?</p>
-            <textarea className="textarea" rows={3} placeholder="Describe the problem..." value={String(form['design_problem'] ?? '')} onChange={e => set('design_problem', e.target.value)} />
+            <p className="text-xs text-gray-400 mb-2">Looking across the four areas, where do you feel the most friction, longing, or imbalance? A design problem is something that isn't working that you might be able to redesign — not just complain about, but actually change. Name it as specifically as you can.</p>
+            <textarea className="textarea" rows={3} placeholder="e.g. I feel like work is consuming everything and I have no play left in my life…" value={String(form['design_problem'] ?? '')} onChange={e => set('design_problem', e.target.value)} />
           </div>
           <div>
             <label className="block font-medium text-gray-900 text-sm mb-1">Is this a gravity problem?</label>
-            <p className="text-xs text-gray-400 mb-2">Are you treating something as a fixed constraint that might actually be actionable if you approached it differently?</p>
-            <textarea className="textarea" rows={3} placeholder="Reflect on whether this is truly fixed..." value={String(form['gravity_problem'] ?? '')} onChange={e => set('gravity_problem', e.target.value)} />
+            <p className="text-xs text-gray-400 mb-2">A gravity problem feels immovable — like a law of nature you can't fight. "I can't change this because of my mortgage / my family / my age." But gravity problems are often just untested assumptions. Ask yourself: have I actually tried to change this, or have I just decided it's impossible? Reflect honestly here.</p>
+            <textarea className="textarea" rows={3} placeholder="e.g. I keep telling myself I can't pursue X because of Y — but have I actually tested that?" value={String(form['gravity_problem'] ?? '')} onChange={e => set('gravity_problem', e.target.value)} />
           </div>
         </div>
 

@@ -5,6 +5,7 @@ import { useUser } from '@/contexts/UserContext'
 import { supabase, saveResponse, getResponses, getPartnerResponses } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
 import PartnerView from '@/components/PartnerView'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 import { FailureEntry } from '@/types'
 
 const EX_ID = 'ex7'
@@ -75,7 +76,13 @@ export default function Ex7Page() {
         <p className="text-gray-500 text-sm">Convert failures into insights through reflection and categorization.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 10: Failure Immunity"
+        time="Ongoing — add entries whenever something doesn't go as planned"
+        youNeed={['Honesty — the log only works if you write what actually happened', 'Willingness to revisit uncomfortable moments without spiraling']}
+        purpose="Designers fail constantly. The difference isn't your failure rate — it's what you do with failure afterward. This exercise builds the habit of converting failure into data instead of shame. Over time it makes you genuinely resilient."
+      />
+      <ReadingSection id="ex7">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 10 — Failure Immunity</p>
         <p>Designers fail constantly. Prototypes don't work. Assumptions turn out to be wrong. Plans need revision. The difference between designers who keep moving and ones who get stuck isn't their failure rate — it's what they do with failure when it happens.</p>
         <p className="mt-3">Good designers treat failure as <strong>data</strong>. Not as evidence that they're not good enough, not as a reason to stop, but as information about what's actually true — information they didn't have before. The failure log is a practice for building that habit.</p>
@@ -107,6 +114,7 @@ export default function Ex7Page() {
             <div key={entry.id} className="bg-gray-50 rounded-xl p-4 space-y-3">
               <div>
                 <label className="block text-xs text-gray-500 mb-1">Describe the failure</label>
+                <p className="text-xs text-gray-400 mb-1">Write what actually happened — not a cleaned-up version. What did you do or not do? What was the result?</p>
                 <textarea className="textarea bg-white text-sm" rows={2} value={entry.failure} onChange={e => updateEntry(entry.id, 'failure', e.target.value)} />
               </div>
 
@@ -133,6 +141,7 @@ export default function Ex7Page() {
               {entry.category === 'growth' && (
                 <div>
                   <label className="block text-xs text-gray-500 mb-1">Growth insight — what's the fixable pattern?</label>
+                  <p className="text-xs text-gray-400 mb-1">Don't write "I'm bad at X." Write: "I failed because I did Y when I should have done Z. Next time I will…" That level of precision is the actual insight.</p>
                   <textarea className="textarea bg-white text-sm" rows={2} value={entry.insight} onChange={e => updateEntry(entry.id, 'insight', e.target.value)} />
                 </div>
               )}
@@ -145,7 +154,8 @@ export default function Ex7Page() {
 
       <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
         <h2 className="font-semibold text-gray-900 mb-3">Patterns</h2>
-        <label className="block text-xs text-gray-500 mb-2">What patterns do you notice across your failures?</label>
+        <label className="block text-xs text-gray-500 mb-1">What patterns do you notice across your failures?</label>
+        <p className="text-xs text-gray-400 mb-2">Look across all your entries. Are there common triggers, timing patterns, or situations where you consistently struggle? Any surprises — failures you expected to see but didn't, or ones that keep showing up?</p>
         <textarea className="textarea" rows={4} value={patterns} onChange={e => setPatterns(e.target.value)} />
       </div>
 

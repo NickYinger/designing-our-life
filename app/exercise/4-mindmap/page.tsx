@@ -5,6 +5,7 @@ import { useUser } from '@/contexts/UserContext'
 import { supabase } from '@/lib/supabase'
 import { saveResponse } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 import { MindMapNode } from '@/types'
 
 const EX_ID = 'ex4'
@@ -119,7 +120,13 @@ export default function Ex4Page() {
         <p className="text-gray-500 text-sm">Use free word association to open up your idea space.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 4: Getting Unstuck"
+        time="45–60 minutes"
+        youNeed={['At least 1 week of Good Time Journal entries to draw from', 'Speed — the point is to go faster than your inner critic']}
+        purpose="When you're stuck, thinking harder doesn't help. Mind mapping lets you think sideways — using free word association to surface ideas that rational thinking would filter out. This exercise often reveals what you're actually drawn toward, by sneaking past your self-censorship."
+      />
+      <ReadingSection id="ex4">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 4 — Getting Unstuck</p>
         <p>When you're stuck, thinking harder usually doesn't help — you're already trapped inside your own habitual patterns of thought. Mind mapping is a technique for thinking sideways: using rapid, uncritical word association to surface ideas that rational, linear thinking would filter out before they ever reach the surface.</p>
         <p className="mt-3">The process is deliberately fast and deliberately uncritical. You write a central word — something from your Good Time Journal that engaged or energized you — then quickly branch out with any related word that comes to mind, then branch from those. The key rule: <strong>move faster than your inner editor</strong>. You're not evaluating, you're generating. Weird associations are better than safe ones.</p>

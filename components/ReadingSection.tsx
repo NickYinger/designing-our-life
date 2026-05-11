@@ -1,20 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronDownIcon, ChevronUpIcon, BookOpenIcon } from '@heroicons/react/24/outline'
 
 interface Props {
   children: React.ReactNode
-  defaultOpen?: boolean
+  id?: string
 }
 
-export default function ReadingSection({ children, defaultOpen = false }: Props) {
-  const [open, setOpen] = useState(defaultOpen)
+export default function ReadingSection({ children, id }: Props) {
+  const storageKey = id ? `reading_open_${id}` : null
+  const [open, setOpen] = useState(true)
+  const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    if (storageKey) {
+      const stored = localStorage.getItem(storageKey)
+      if (stored !== null) setOpen(stored === 'true')
+    }
+    setHydrated(true)
+  }, [storageKey])
+
+  const toggle = () => {
+    const next = !open
+    setOpen(next)
+    if (storageKey) localStorage.setItem(storageKey, String(next))
+  }
+
+  if (!hydrated) return null
 
   return (
     <div className="mb-8 border border-teal-100 rounded-2xl overflow-hidden">
       <button
-        onClick={() => setOpen(!open)}
+        onClick={toggle}
         className="w-full flex items-center justify-between px-6 py-4 bg-teal-50 hover:bg-teal-100 transition-colors"
       >
         <div className="flex items-center gap-2 text-teal-700 font-medium">

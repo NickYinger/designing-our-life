@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useUser } from '@/contexts/UserContext'
 import { supabase, saveResponse, getResponses } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 import { OdysseyPlan } from '@/types'
 
 const EX_ID = 'ex6'
@@ -53,7 +54,13 @@ export default function Ex6Page() {
         <p className="text-gray-500 text-sm">Test your Odyssey Plan ideas before committing to them.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 6: Prototyping"
+        time="Ongoing — each conversation or experience takes 30 min to a few hours"
+        youNeed={['Completed Odyssey Plans (Exercise 5)', 'The questions you wrote for each plan — those are your prototype starting points', 'Courage to reach out to people (it's easier than it sounds)']}
+        purpose="Everything you've written so far is imagined. Prototyping is how you test your imagination against reality before committing. One honest conversation with someone living what you're considering is worth more than hours of thinking about it."
+      />
+      <ReadingSection id="ex6">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 6 — Prototyping</p>
         <p>Every Odyssey Plan you wrote is a hypothesis — a product of your imagination. Prototyping is how you test that hypothesis against reality, cheaply and before you've committed anything.</p>
         <p className="mt-3">The authors introduce two types of prototypes:</p>
@@ -84,7 +91,8 @@ export default function Ex6Page() {
 
       {/* Prototype conversations */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
-        <h2 className="font-semibold text-gray-900 mb-4">Prototype Conversations</h2>
+        <h2 className="font-semibold text-gray-900 mb-2">Prototype Conversations</h2>
+        <p className="text-sm text-gray-500 mb-4">Find someone living something close to what you're considering and ask: "I'm curious about your path — could I hear your story?" Don't call it an interview. Don't pitch yourself. Just listen. Log each conversation here after it happens.</p>
         <div className="space-y-4">
           {convos.map((c, i) => (
             <div key={i} className="bg-gray-50 rounded-xl p-4 space-y-3">
@@ -117,7 +125,8 @@ export default function Ex6Page() {
 
       {/* Prototype experiences */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
-        <h2 className="font-semibold text-gray-900 mb-4">Prototype Experiences</h2>
+        <h2 className="font-semibold text-gray-900 mb-2">Prototype Experiences</h2>
+        <p className="text-sm text-gray-500 mb-4">Shadow someone for a day, take on a short project, volunteer, do a micro-internship. The goal is first-person data — what does this path actually feel like from the inside? Go in curious, not to confirm what you already believe.</p>
         <div className="space-y-4">
           {experiences.map((e, i) => (
             <div key={i} className="bg-gray-50 rounded-xl p-4 space-y-3">

@@ -5,6 +5,7 @@ import { useUser } from '@/contexts/UserContext'
 import { supabase, saveResponse, getResponses, getPartnerResponses } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
 import PartnerView from '@/components/PartnerView'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 import { TeamMember } from '@/types'
 
 const EX_ID = 'ex8'
@@ -79,7 +80,13 @@ export default function Ex8Page() {
         <p className="text-gray-500 text-sm">Assemble your life design team for support, accountability, and perspective.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 11: Building a Team"
+        time="30–45 minutes to identify your team; ongoing to actually meet"
+        youNeed={['Completed earlier exercises to know what you want your team to support', 'Willingness to ask people — most will say yes if you're clear about what you're asking for']}
+        purpose="Life design is not a solo project. The authors are emphatic: people who do this with a team get dramatically better results than people who do it alone. Not because the team tells you what to do, but because thinking out loud with others surfaces things you can't see by yourself."
+      />
+      <ReadingSection id="ex8">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 11 — Building a Team</p>
         <p>Life design is not a solo project. The authors argue that one of the most important things you can do is build a small team of people who will engage seriously with your process — not cheerleaders, not people who tell you you're doing great, but people who will ask hard questions and hold you accountable to the work.</p>
         <p className="mt-3">Three kinds of team members:</p>
@@ -133,7 +140,7 @@ export default function Ex8Page() {
                   <div key={m.idx} className="flex gap-3 items-start">
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <input className="input text-sm" placeholder="Name" value={m.name} onChange={e => updateMember(m.idx, 'name', e.target.value)} />
-                      <input className="input text-sm" placeholder="Why they're on your team" value={m.note} onChange={e => updateMember(m.idx, 'note', e.target.value)} />
+                      <input className="input text-sm" placeholder="What they bring to your team" value={m.note} onChange={e => updateMember(m.idx, 'note', e.target.value)} />
                     </div>
                     <button onClick={() => removeMember(m.idx)} className="text-gray-300 hover:text-red-400 mt-2.5">×</button>
                   </div>
@@ -147,7 +154,8 @@ export default function Ex8Page() {
       {/* Meeting structure */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
         <h2 className="font-semibold text-gray-900 mb-3">Meeting Structure</h2>
-        <label className="block text-xs text-gray-500 mb-2">How will you structure your team meetings? How often, in what format?</label>
+        <label className="block text-xs text-gray-500 mb-1">How will you structure your team meetings?</label>
+        <p className="text-xs text-gray-400 mb-2">The authors recommend meeting monthly or quarterly. Think about: How often? Where? Who hosts? How do you open — check-ins, a question? What does each person share? How do you close? The more specific the structure, the more likely it actually happens.</p>
         <textarea className="textarea" rows={4} placeholder="e.g. Monthly dinners, rotating host, each person shares one update and one ask…" value={meetingStructure} onChange={e => setMeetingStructure(e.target.value)} />
       </div>
 

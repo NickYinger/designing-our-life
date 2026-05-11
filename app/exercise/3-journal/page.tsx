@@ -5,6 +5,7 @@ import { useUser } from '@/contexts/UserContext'
 import { saveResponse, getResponses } from '@/lib/supabase'
 import { supabase } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 import { JournalEntry } from '@/types'
 
 const EX_ID = 'ex3'
@@ -92,7 +93,13 @@ export default function Ex3Page() {
         <p className="text-gray-500 text-sm">Log activities over three weeks to discover when you're engaged, energized, and in flow.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 3: Wayfinding"
+        time="3 weeks of ongoing logging (5–10 min per entry)"
+        youNeed={['Commitment to log consistently — daily or every few days', 'At least 1 week of entries before moving to Exercise 4']}
+        purpose="This is your data-collection phase. You can't wayfind without signals, and right now you're learning which activities actually engage and energize you — versus the ones that just seem like they should. The journal builds the evidence base for every exercise that follows."
+      />
+      <ReadingSection id="ex3">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 3 — Wayfinding</p>
         <p>When you don't have a map, you wayfind — you pay close attention to the signals your experience is giving you and navigate from there. The Good Time Journal is your wayfinding instrument. It trains you to notice two distinct signals that most people blur together:</p>
         <ul className="mt-3 space-y-2 text-sm">
@@ -129,21 +136,26 @@ export default function Ex3Page() {
 
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <label className="block text-xs text-gray-500 mb-2">Engagement — {newEntry.engagement}%</label>
+              <label className="block text-xs text-gray-500 mb-1">Engagement — {newEntry.engagement}%</label>
+              <p className="text-xs text-gray-400 mb-2">How absorbed and mentally present were you? Were you fully in it, or going through the motions?</p>
               <input type="range" min={0} max={100} value={newEntry.engagement} onChange={e => setNewEntry(n => ({ ...n, engagement: Number(e.target.value) }))} className="w-full accent-teal-600" />
-              <div className="flex justify-between text-xs text-gray-400 mt-1"><span>Low</span><span>High</span></div>
+              <div className="flex justify-between text-xs text-gray-400 mt-1"><span>Checked out</span><span>Fully absorbed</span></div>
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-2">Energy — {newEntry.energy}%</label>
+              <label className="block text-xs text-gray-500 mb-1">Energy — {newEntry.energy}%</label>
+              <p className="text-xs text-gray-400 mb-2">Afterward, did you feel more alive or more depleted? This is separate from engagement — some things are interesting but draining.</p>
               <input type="range" min={0} max={100} value={newEntry.energy} onChange={e => setNewEntry(n => ({ ...n, energy: Number(e.target.value) }))} className="w-full accent-teal-600" />
-              <div className="flex justify-between text-xs text-gray-400 mt-1"><span>Draining</span><span>Energizing</span></div>
+              <div className="flex justify-between text-xs text-gray-400 mt-1"><span>Drained</span><span>Energized</span></div>
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-            <input type="checkbox" checked={newEntry.flow} onChange={e => setNewEntry(n => ({ ...n, flow: e.target.checked }))} className="accent-teal-600 w-4 h-4" />
-            I experienced flow during this activity
-          </label>
+          <div>
+            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+              <input type="checkbox" checked={newEntry.flow} onChange={e => setNewEntry(n => ({ ...n, flow: e.target.checked }))} className="accent-teal-600 w-4 h-4" />
+              I experienced flow during this activity
+            </label>
+            <p className="text-xs text-gray-400 mt-1 ml-6">Flow: you lost track of time, effort disappeared, you were completely absorbed. Challenge and ability were perfectly matched.</p>
+          </div>
 
           <button onClick={saveEntry} disabled={saving || !newEntry.activity} className="btn-primary">
             {saving ? 'Saving…' : 'Add Entry'}

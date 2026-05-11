@@ -5,6 +5,7 @@ import { useUser } from '@/contexts/UserContext'
 import { supabase, saveResponse } from '@/lib/supabase'
 import ReadingSection from '@/components/ReadingSection'
 import PartnerView from '@/components/PartnerView'
+import BeforeYouBegin from '@/components/BeforeYouBegin'
 import Gauge from '@/components/Gauge'
 import { OdysseyPlan } from '@/types'
 
@@ -115,7 +116,8 @@ export default function Ex5Page() {
 
       {/* Timeline */}
       <div className="mb-6">
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">5-Year Timeline</p>
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">5-Year Timeline</p>
+        <p className="text-xs text-gray-400 mb-3">What would actually have to happen, and when? Be specific — not "get a new job" but "talk to 3 people in that field, take a course, apply." Start with where you are now (Year 0).</p>
         <div className="grid grid-cols-6 gap-2">
           {YEARS.map(year => (
             <div key={year}>
@@ -177,7 +179,13 @@ export default function Ex5Page() {
         <p className="text-gray-500 text-sm">Three genuinely different versions of the next five years of your life.</p>
       </div>
 
-      <ReadingSection>
+      <BeforeYouBegin
+        chapter="Designing Your Life — Chapter 5: Design Your Lives"
+        time="90–120 minutes"
+        youNeed={['Completed Exercises 1–4 (especially Workview/Lifeview and Good Time Journal)', 'Willingness to take all three plans seriously — not treat two as throwaways']}
+        purpose="This is the heart of the book. You don't have one true life — you have many possible lives. This exercise makes you map out three genuinely different alternatives so you can stop wondering 'what if' and start collecting real information about each path."
+      />
+      <ReadingSection id="ex5">
         <p className="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-3">📖 Read First: Chapter 5 — Design Your Lives</p>
         <p>One of the central insights of this book: <strong>you don't have one true life</strong>. You have many possible lives. The goal of life design isn't to find "the right one" — it's to get genuinely curious about several different alternatives and evaluate them with real data rather than imagination alone.</p>
         <p className="mt-3">The Odyssey Plan asks you to draft <strong>three genuinely different</strong> alternative paths for the next five years. The authors are very specific here: not a best plan and two backups. Not Plan A and two lesser versions. Three paths you could actually see yourself living — paths that are different enough from each other that they'd take you to meaningfully different places.</p>

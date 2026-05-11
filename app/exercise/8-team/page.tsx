@@ -83,7 +83,7 @@ export default function Ex8Page() {
       <BeforeYouBegin
         chapter="Designing Your Life — Chapter 11: Building a Team"
         time="30–45 minutes to identify your team; ongoing to actually meet"
-        youNeed={['Completed earlier exercises to know what you want your team to support', 'Willingness to ask people — most will say yes if you're clear about what you're asking for']}
+        youNeed={['Completed earlier exercises to know what you want your team to support', "Willingness to ask people — most will say yes if you're clear about what you're asking for"]}
         purpose="Life design is not a solo project. The authors are emphatic: people who do this with a team get dramatically better results than people who do it alone. Not because the team tells you what to do, but because thinking out loud with others surfaces things you can't see by yourself."
       />
       <ReadingSection id="ex8">

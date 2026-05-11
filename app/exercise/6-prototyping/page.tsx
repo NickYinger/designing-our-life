@@ -57,7 +57,7 @@ export default function Ex6Page() {
       <BeforeYouBegin
         chapter="Designing Your Life — Chapter 6: Prototyping"
         time="Ongoing — each conversation or experience takes 30 min to a few hours"
-        youNeed={['Completed Odyssey Plans (Exercise 5)', 'The questions you wrote for each plan — those are your prototype starting points', 'Courage to reach out to people (it's easier than it sounds)']}
+        youNeed={['Completed Odyssey Plans (Exercise 5)', 'The questions you wrote for each plan — those are your prototype starting points', "Courage to reach out to people (it's easier than it sounds)"]}
         purpose="Everything you've written so far is imagined. Prototyping is how you test your imagination against reality before committing. One honest conversation with someone living what you're considering is worth more than hours of thinking about it."
       />
       <ReadingSection id="ex6">

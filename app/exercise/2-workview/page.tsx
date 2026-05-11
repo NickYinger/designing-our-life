@@ -62,7 +62,7 @@ export default function Ex2Page() {
       <BeforeYouBegin
         chapter="Designing Your Life — Chapter 2: Building a Compass"
         time="60–90 minutes (about 30 min per view)"
-        youNeed={['Uninterrupted time — this is philosophical, not quick', 'Willingness to write what's actually true, not what sounds good']}
+        youNeed={['Uninterrupted time — this is philosophical, not quick', "Willingness to write what's actually true, not what sounds good"]}
         purpose="Your Workview and Lifeview together form the compass that guides every design decision you make. Without this compass, you're navigating without knowing which direction matters. This is foundational — if you skip it, every later exercise loses its grounding."
       />
       <ReadingSection id="ex2">
